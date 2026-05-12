@@ -1,0 +1,32 @@
+{
+  "architectures": ["HybridCNNViT"],
+  "model_type": "hybrid-cnn-vit",
+  "task": "image-classification",
+  "num_classes": 4,
+  "class_names": ["glioma", "meningioma", "no_tumor", "pituitary"],
+  "id2label": {
+    "0": "glioma",
+    "1": "meningioma",
+    "2": "no_tumor",
+    "3": "pituitary"
+  },
+  "label2id": {
+    "glioma": 0,
+    "meningioma": 1,
+    "no_tumor": 2,
+    "pituitary": 3
+  },
+  "cnn_backbone": "resnet50",
+  "cnn_pretrained": false,
+  "vit_embed_dim": 512,
+  "vit_depth": 6,
+  "vit_num_heads": 8,
+  "vit_mlp_ratio": 4.0,
+  "use_radiomics": true,
+  "radiomics_dim": 128,
+  "fusion_type": "concat",
+  "image_size": 224,
+  "dropout": 0.3,
+  "normalize_mean": [0.485, 0.456, 0.406],
+  "normalize_std": [0.229, 0.224, 0.225]
+}

@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+ENV/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Large model checkpoints (train locally or pull from Hugging Face)
+checkpoints/*.pth
+checkpoints/*.pt
+*.ckpt
+
+# Dataset (download from Kaggle; see README)
+data/raw/
+data/processed/
+src/data/raw/
+src/data/processed/
+src/data/ext_test/
+
+# Logs & experiment tracking
+runs/
+wandb/
+*.log
+lightning_logs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Nested duplicate repository (Hugging Face Space clone)
+brain-tumor-detection/
+
+# Local tooling
+.claude/
+
+# Build
+*.egg-info/
+dist/
+build/

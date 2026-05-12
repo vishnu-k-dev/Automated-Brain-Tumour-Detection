@@ -1,0 +1,121 @@
+# Project Configuration
+# Brain Tumor Detection & Classification
+
+# Data Settings
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  img_size: 224
+  num_classes: 4
+  class_names: ["glioma", "meningioma", "notumor", "pituitary"]
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+  
+# Preprocessing
+preprocessing:
+  normalize: true
+  skull_strip: false  # Set to true if using raw MRI data
+  contrast_enhance: true
+
+# Augmentation
+augmentation:
+  enabled: true
+  rotation_range: 15
+  horizontal_flip: true
+  vertical_flip: false
+  elastic_deform: true
+  elastic_alpha: 50
+  elastic_sigma: 5
+  brightness_range: 0.1
+  mixup_alpha: 0.2  # Set to 0 to disable
+
+# Model Architecture
+model:
+  name: "hybrid_cnn_vit"
+  
+  # CNN Backbone
+  cnn_backbone: "resnet50"  # Options: resnet18, resnet50, efficientnet_b0
+  cnn_pretrained: true
+  cnn_freeze_layers: 0  # Number of layers to freeze (0 = train all)
+  
+  # Vision Transformer
+  vit_patch_size: 7  # Patch size for ViT on CNN feature maps
+  vit_embed_dim: 512
+  vit_depth: 6  # Number of transformer blocks
+  vit_num_heads: 8
+  vit_mlp_ratio: 4.0
+  vit_dropout: 0.1
+  
+  # Radiomics
+  use_radiomics: true
+  radiomics_features: 128  # Number of radiomics features to use
+  
+  # Classification Head
+  hidden_dim: 512
+  dropout: 0.3
+
+# Self-Supervised Pre-Training
+ssl:
+  enabled: true
+  method: "mae"  # Options: mae (masked autoencoder), simclr
+  mask_ratio: 0.75  # For MAE
+  pretrain_epochs: 50
+  pretrain_lr: 1.0e-4
+  pretrain_batch_size: 32
+
+# Training
+training:
+  epochs: 100
+  batch_size: 16
+  learning_rate: 1.0e-4
+  weight_decay: 0.01
+  optimizer: "adamw"  # Options: adam, adamw, sgd
+  scheduler: "cosine"  # Options: cosine, step, plateau
+  warmup_epochs: 5
+  label_smoothing: 0.1
+  class_weights: "balanced"  # Options: balanced, none, or list of weights
+  gradient_clip: 1.0
+  mixed_precision: true
+  
+  # Early Stopping
+  early_stopping:
+    enabled: true
+    patience: 15
+    min_delta: 0.001
+    monitor: "val_f1"
+
+# Checkpointing
+checkpoint:
+  save_dir: "checkpoints"
+  save_best: true
+  save_frequency: 10  # Save every N epochs
+
+# Logging
+logging:
+  tensorboard: true
+  wandb: false
+  log_dir: "logs"
+  log_frequency: 10  # Log every N batches
+
+# Evaluation
+evaluation:
+  metrics: ["accuracy", "precision", "recall", "f1", "auc", "confusion_matrix"]
+  save_predictions: true
+  results_dir: "results"
+
+# Explainability
+explainability:
+  gradcam: true
+  attention_viz: true
+  save_visualizations: true
+  num_samples: 20  # Number of samples to visualize
+
+# Hardware
+hardware:
+  device: "cuda"  # Options: cuda, cpu, mps
+  num_workers: 4
+  pin_memory: true
+
+# Random Seed
+seed: 42

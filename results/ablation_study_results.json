@@ -1,0 +1,35 @@
+{
+  "models": {
+    "CNN Only (ResNet50)": {
+      "accuracy": 0.9763779527559056,
+      "f1_score": 0.97621068797979,
+      "roc_auc": 0.9970519335028769,
+      "total_params": 24559172,
+      "trainable_params": 24559172
+    },
+    "ViT Only (ViT-B/16)": {
+      "accuracy": 0.984251968503937,
+      "f1_score": 0.9842624628300782,
+      "roc_auc": 0.9994271789635913,
+      "total_params": 85801732,
+      "trainable_params": 85801732
+    },
+    "EfficientNet-B0": {
+      "accuracy": 0.9886264216972879,
+      "f1_score": 0.988623904438108,
+      "roc_auc": 0.9993410902568113,
+      "total_params": 4012672,
+      "trainable_params": 4012672
+    },
+    "Hybrid CNN-ViT (Ours)": {
+      "accuracy": 0.9912510936132983,
+      "f1_score": 0.991257542335362,
+      "roc_auc": 0.9982927154269484,
+      "total_params": 47011396,
+      "trainable_params": 47011396
+    }
+  },
+  "epochs_per_model": 20,
+  "seed": 42,
+  "timestamp": "2026-02-03T09:45:27.756149"
+}
